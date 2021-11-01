@@ -1,5 +1,11 @@
 import random
 abc="abcdefghijklmnopqrstuvwxyz"
+
+# If you want it to go on diagonals
+moves=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+# Otherwise
+moves=[(-1, 0), (0, -1), (0, 1), (1, 0)]
+
 class Plato():
     def __init__(self,taillex=8,tailley=8):
         self.array=[" " for _ in range(taillex*tailley)]
@@ -56,11 +62,11 @@ class Obj():
     def __repr__(self):
         return self.name
     def accoucher(self,pos):
-        plato[pos]=Obj(pos,random.choice(abc))
+        plato[pos]=Obj(pos,str(len(self.list)))
         plato[pos].list=self.list+[self]
         return plato[pos]
     def polluer(self):
-        moves=[(0,1),(0,-1),(-1,1),(-1,0),(-1,-1),(1,-1),(1,0),(1,1)]
+        
         newmen=[]
         for move in moves:
             new=Pos(self.pos.x+move[0],self.pos.y+move[1])
@@ -79,8 +85,8 @@ beg=Obj(Pos(0,0),"B")
 plato=Plato()
 plato[end.pos]=end
 plato[beg.pos]=beg
-plato[(5,5)]='_'
-def pathfind(gen=[beg]):
+
+def checkandcontinue(gen=[beg]):
     nextgen=[]
     for obj in gen:
         rend=obj.polluer()
@@ -89,8 +95,10 @@ def pathfind(gen=[beg]):
         else:
             return rend
     return nextgen
-p=[beg]
-while not type(p)==tuple:
-    p=pathfind(p)
-print(p)
+
+def pathfind():
+    p=[beg]
+    while not type(p)==tuple:
+        p=checkandcontinue(p)
+    return p[0]
 
