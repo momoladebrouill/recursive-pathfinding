@@ -1,10 +1,6 @@
 import random
 abc="abcdefghijklmnopqrstuvwxyz"
 
-# If you want it to go on diagonals
-moves=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
-# Otherwise
-moves=[(-1, 0), (0, -1), (0, 1), (1, 0)]
 
 class Plato():
     def __init__(self,taillex=8,tailley=8):
@@ -65,8 +61,11 @@ class Obj():
         plato[pos]=Obj(pos,str(len(self.list)))
         plato[pos].list=self.list+[self]
         return plato[pos]
-    def polluer(self):
-        
+    def polluer(self,diag):
+        if diag:
+            moves=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+        else:
+            moves=[(-1, 0), (0, -1), (0, 1), (1, 0)]
         newmen=[]
         for move in moves:
             new=Pos(self.pos.x+move[0],self.pos.y+move[1])
@@ -86,19 +85,21 @@ plato=Plato()
 plato[end.pos]=end
 plato[beg.pos]=beg
 
-def checkandcontinue(gen=[beg]):
+def checkandcontinue(gen,diag):
     nextgen=[]
     for obj in gen:
-        rend=obj.polluer()
+        rend=obj.polluer(diag)
         if type(rend)==list:
             nextgen+=rend
         else:
             return rend
     return nextgen
 
-def pathfind():
+def pathfind(diag=True):
     p=[beg]
     while not type(p)==tuple:
-        p=checkandcontinue(p)
+        p=checkandcontinue(p,diag)
+        if p==[]:
+            return None
     return p[0]
 
