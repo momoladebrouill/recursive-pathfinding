@@ -1,6 +1,6 @@
 import random
 abc="abcdefghijklmnopqrstuvwxyz"
-
+SIZE=15
 
 class Plato():
     def __init__(self,taillex=8,tailley=8):
@@ -79,9 +79,9 @@ class Obj():
                         newmen.append(accoucher(new))
                 
         return newmen
-end=Obj(Pos(7,7),"E")
+end=Obj(Pos(SIZE-1,SIZE-1),"E")
 beg=Obj(Pos(0,0),"B")
-plato=Plato()
+plato=Plato(SIZE,SIZE)
 plato[end.pos]=end
 plato[beg.pos]=beg
 

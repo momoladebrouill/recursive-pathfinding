@@ -7,11 +7,11 @@ from random import random
 hsv=lambda h:"#%02x%02x%02x" % tuple([int(c) for c in hsv_to_rgb(h,1,255)])
 coul=random()
 mur="#"
-
+fontsize=10
 def colorize(to_blick=[]):
     for ind,but in enumerate(buttons):
         
-        tuplepos=divmod(ind,8)[::-1]
+        tuplepos=divmod(ind,SIZE)[::-1]
         pos=Pos(tuplepos[0],tuplepos[1])
         text=plato[pos]
         buttons[ind]["text"]=text
@@ -63,7 +63,7 @@ for pos,piece in plato:
     f.grid_rowconfigure(pos[1], weight=1)
     but=tk.Button(g,
                   text=piece,
-                  font="Consolas 25",
+                  font=f"Consolas {fontsize}",
                   width=3,
                   height=1,
                   relief='flat',
