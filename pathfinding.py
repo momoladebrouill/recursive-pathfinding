@@ -3,7 +3,7 @@ abc="abcdefghijklmnopqrstuvwxyz"
 SIZE=15
 
 class Plato():
-    def __init__(self,taillex=8,tailley=8):
+    def __init__(self,taillex=SIZE,tailley=SIZE):
         self.array=[" " for _ in range(taillex*tailley)]
         self.larg=taillex
         self.haut=tailley
@@ -50,6 +50,7 @@ class Pos():
         return [self.x,self.y][num]
     def __eq__(self,other):
         return self.x==other.x and self.y==other.y
+        
 class Obj():
     def __init__(self,pos,name):
         self.pos=pos

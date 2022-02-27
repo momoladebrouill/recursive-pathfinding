@@ -28,7 +28,7 @@ def changefor(e):
         if plato[e]==beg:
             p=pathfind(diag=isdiag.get())
             if p==None:
-                ms.showerror(title='Path error',message="No path found between B and E\nPlease ensure that it the path between those two points exists.")
+                ms.showerror(title='Path error',message="No path found between B and E\nPlease ensure that it the path between those two points exists and that the board is clear before finding a path")
             else:
                 colorize(p)
         elif plato[e]==end:
@@ -64,7 +64,7 @@ for pos,piece in plato:
     but=tk.Button(g,
                   text=piece,
                   font=f"Consolas {fontsize}",
-                  width=3,
+                  width=1,
                   height=1,
                   relief='flat',
                   command=partial(changefor, pos)
@@ -88,5 +88,5 @@ tk.Button(f,
                text="reshake colors",
                command=newcolor).pack()
 colorize()
-
+f.mainloop()
 
